@@ -1,0 +1,182 @@
+!
+version 16.3.2
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Core-MLS
+!
+no profinet
+!
+aaa new-model
+!
+aaa authentication login RADIUS_AUTH group radius local 
+!
+no ip cef
+ip routing
+!
+no ipv6 cef
+!
+username admin privilege 15 password 0 nvidia_admin_pass
+!
+spanning-tree mode pvst
+!
+interface GigabitEthernet1/0/1
+ description Link Facing ASA 5506-X Inside Port
+ no switchport
+ ip address 192.168.80.1 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet1/0/2
+ description Core Infrastructure Server Access Ports
+ switchport access vlan 70
+ switchport trunk allowed vlan 10,20,30,40,50,60,70
+ switchport mode access
+ switchport nonegotiate
+!
+interface GigabitEthernet1/0/3
+ description Core Infrastructure Server Access Ports
+ switchport access vlan 70
+ switchport trunk allowed vlan 10,20,30,40,50,60,70
+ switchport mode access
+ switchport nonegotiate
+!
+interface GigabitEthernet1/0/4
+ description Core Infrastructure Server Access Ports
+ switchport access vlan 70
+ switchport trunk allowed vlan 10,20,30,40,50,60,70
+ switchport mode access
+ switchport nonegotiate
+!
+interface GigabitEthernet1/0/5
+ description Core Infrastructure Server Access Ports
+ switchport access vlan 70
+ switchport trunk allowed vlan 10,20,30,40,50,60,70
+ switchport mode access
+ switchport nonegotiate
+!
+interface GigabitEthernet1/0/6
+ description Core Trunk Links to Leaf Switches
+ switchport trunk allowed vlan 10,20,30,40,50,60,70
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface GigabitEthernet1/0/7
+ description Core Trunk Links to Leaf Switches
+ switchport trunk allowed vlan 10,20,30,40,50,60,70
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface GigabitEthernet1/0/8
+ description Core Trunk Links to Leaf Switches
+ switchport trunk allowed vlan 10,20,30,40,50,60,70
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface GigabitEthernet1/0/9
+ description Core Trunk Links to Leaf Switches
+ switchport trunk allowed vlan 10,20,30,40,50,60,70
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface GigabitEthernet1/0/10
+ description Core Trunk Links to Leaf Switches
+ switchport access vlan 70
+ switchport trunk allowed vlan 10,20,30,40,50,60,70
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface GigabitEthernet1/0/11
+ description Core Trunk Links to Leaf Switches
+ switchport access vlan 70
+ switchport trunk allowed vlan 10,20,30,40,50,60,70
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface GigabitEthernet1/0/12
+ description Core Infrastructure Server Ports
+ switchport access vlan 70
+ switchport trunk allowed vlan 10,20,30,40,50,60,70
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/13
+ description Core Infrastructure Server Ports
+ switchport access vlan 70
+ switchport mode access
+!
+interface GigabitEthernet1/0/14
+ description Core Infrastructure Server Ports
+ switchport access vlan 70
+ switchport mode access
+!
+interface GigabitEthernet1/0/15
+ description Core Infrastructure Server Ports
+ switchport access vlan 70
+ switchport mode access
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan10
+ description Production SVI Gateway
+ ip address 192.168.10.1 255.255.255.0
+ ip helper-address 192.168.70.2
+!
+interface Vlan20
+ description Support_B SVI Gateway
+ ip address 192.168.20.1 255.255.255.224
+ ip helper-address 192.168.70.2
+!
+interface Vlan30
+ description Study SVI Gateway
+ ip address 192.168.30.1 255.255.255.224
+ ip helper-address 192.168.70.2
+!
+interface Vlan40
+ description Support_A SVI Gateway
+ ip address 192.168.40.1 255.255.255.224
+ ip helper-address 192.168.70.2
+!
+interface Vlan50
+ description Management SVI Gateway
+ ip address 192.168.50.1 255.255.255.224
+ ip helper-address 192.168.70.2
+!
+interface Vlan60
+ description IT_Dept SVI Gateway
+ ip address 192.168.60.1 255.255.255.240
+ ip helper-address 192.168.70.2
+!
+interface Vlan70
+ description Core Server Infrastructure SVI
+ ip address 192.168.70.1 255.255.255.240
+!
+ip classless
+ip route 0.0.0.0 0.0.0.0 192.168.80.2 
+!
+ip access-list extended NVIDIA_SECURITY_ACL
+ permit ip 192.168.60.0 0.0.0.15 host 192.168.70.6
+ deny ip 192.168.10.0 0.0.0.255 host 192.168.70.6
+ deny ip 192.168.20.0 0.0.0.31 host 192.168.70.6
+ deny ip 192.168.30.0 0.0.0.31 host 192.168.70.6
+ deny ip 192.168.40.0 0.0.0.31 host 192.168.70.6
+ deny ip 192.168.50.0 0.0.0.31 host 192.168.70.6
+ permit ip any any
+!
+radius server NVIDIA_RADIUS
+ address ipv4 192.168.70.5 auth-port 1645
+ key nvidia_secure_key
+radius server 192.168.70.5
+ address ipv4 192.168.70.5 auth-port 1645
+ key nvidia_secure_key
+!
+line con 0
+line aux 0
+line vty 0 4
+ login authentication RADIUS_AUTH
+line vty 5 15
+ login authentication RADIUS_AUTH
+!
+end

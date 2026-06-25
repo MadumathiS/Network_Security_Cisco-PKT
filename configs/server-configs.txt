@@ -1,0 +1,40 @@
+===================================================================
+NVIDIA BRUSSELS REGIONAL HUB - SERVER HARDWARE CONFIGURATIONS
+===================================================================
+
+[1. DYNAMIC DHCP IDENTITY NODE]
+Static Address Mapping: 192.168.70.2 /28
+Default Gateway Link:  192.168.70.1
+Central Domain Name Directory: 192.168.70.10
+Dynamic Scope Blocks:
+ - Production: Range .10.2 -> .10.254 | GW 192.168.10.1
+ - Support_B:  Range .20.2 -> .20.30  | GW 192.168.20.1
+ - Study:      Range .30.2 -> .30.30  | GW 192.168.30.1
+ - Support_A:  Range .40.2 -> .40.30  | GW 192.168.40.1
+ - Management: Range .50.2 -> .50.30  | GW 192.168.50.1
+ - IT_Dept:    Range .60.2 -> .60.14  | GW 192.168.60.1
+
+[2. DOMAIN NAME DIRECTORY NODE (DNS)]
+Static Address Mapping: 192.168.70.10 /28
+Default Gateway Link:  192.168.70.1
+Forward Lookup Definitions:
+ - stratum.nvidia -> A Record -> Maps to Perimeter Web Host (192.168.90.2)
+
+[3. CORE IDENTITY AAA/RADIUS SERVER NODE]
+Static Address Mapping: 192.168.70.5 /28
+Authentication Secret Key: nvidia_secure_key
+UDP Port Binding Listening: Auth: 1645
+
+[4. RAW HARDENED iSCSI BLOCK TARGET]
+Static Address Mapping: 192.168.70.6 /28
+Default Gateway Link:  192.168.70.1
+Security Policy Status: Protected Outbound via NVIDIA_SECURITY_ACL
+
+[5. PERIMETER LANDING WEB SERVER (DMZ)]
+Static Address Mapping: 192.168.90.2 /28
+Default Gateway Link:  192.168.90.1
+Active Listening Protocols: HTTP / HTTPS
+
+[6. CORE SECURE FTP BACKUP NODE (DMZ)]
+Static Address Mapping: 192.168.90.3 /28
+Default Gateway Link:  192.168.90.1

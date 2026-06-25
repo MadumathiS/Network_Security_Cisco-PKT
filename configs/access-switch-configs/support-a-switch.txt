@@ -1,0 +1,12 @@
+enable
+configure terminal
+hostname Support_A-Switch
+interface FastEthernet0/1
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30,40,50,60,70
+no shutdown
+interface range FastEthernet0/2 - 24
+ switchport mode access
+ switchport access vlan 40
+ spanning-tree portfast
+end

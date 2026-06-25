@@ -1,0 +1,32 @@
+!
+interface GigabitEthernet1/1
+ nameif outside
+ security-level 0
+ ip address dhcp
+ no shutdown
+!
+interface GigabitEthernet1/2
+ nameif inside
+ security-level 100
+ ip address 192.168.80.2 255.255.255.252
+ no shutdown
+!
+interface GigabitEthernet1/3
+ nameif dmz
+ security-level 50
+ ip address 192.168.90.1 255.255.255.240
+ no shutdown
+!
+route inside 192.168.0.0 255.255.0.0 192.168.80.1 1
+route dmz 192.168.90.0 255.255.255.240 192.168.90.1 1
+!
+object network INTERNAL_NETS
+ subnet 192.168.0.0 255.255.0.0
+nat (inside,outside) plain source dynamic INTERNAL_NETS interface
+!
+policy-map global_policy
+ class inspection_default
+  inspect ftp
+  inspect icmp
+!
+write memory

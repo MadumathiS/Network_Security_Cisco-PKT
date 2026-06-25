@@ -88,6 +88,7 @@ Network-Security/
 ├── README.md
 ├── nvidia.pkt
 ├── configs/
+│ ├── core-switch-config-layout.txt
 │ ├── core-switch-config.txt
 │ ├── firewall-config.txt
 │ ├── server-configs.txt
@@ -105,7 +106,6 @@ Network-Security/
 │
 └── screenshots/
 ├── topology-overview.png
-├── vlan-segmentation.png
 ├── firewall-setup.png
 ├── server-room.png
 └── ping-tests.png
