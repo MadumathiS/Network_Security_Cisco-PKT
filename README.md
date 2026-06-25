@@ -119,7 +119,6 @@ Network-Security/
 
 │
 ├── README.md
-├── nvidia.pkt
 ├── configs/
 │ ├── core-switch-config-layout.txt
 │ ├── core-switch-config.txt
@@ -134,6 +133,7 @@ Network-Security/
 │ └── it-switch.txt
 │
 ├── documentation/
+| ├── nvidia.pkt
 │ ├── nvidia_stratum_master_report.pdf
 │ └── networking_analysis.pdf
 │
