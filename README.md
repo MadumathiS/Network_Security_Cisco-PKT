@@ -8,6 +8,24 @@ All access-layer switches are connected in a star formation to a central Layer 3
 
 ## 🔐 Key Features
 
+
+- Collapsed Core Star Topology design
+- VLAN-based segmentation and isolation
+- Inter-VLAN routing via Layer 3 core switch
+- Access Control Lists (ACLs) for traffic control
+- Edge firewall for perimeter security
+- Centralized server services (DNS, DHCP, HTTP, RADIUS)
+- Secure enterprise printing (dedicated VLAN)
+- Department-wise isolation and security zoning
+- Scalable enterprise network design
+
+---
+
+## 🧱 Network Architecture
+
+### Topology Type
+**Collapsed Core Star Topology**
+
 ![Network Topology](screenshots/topology-overview.png)
 
 ---
@@ -37,22 +55,6 @@ All access-layer switches are connected in a star formation to a central Layer 3
 ========================================================================================================
 
 ```
-- Collapsed Core Star Topology design
-- VLAN-based segmentation and isolation
-- Inter-VLAN routing via Layer 3 core switch
-- Access Control Lists (ACLs) for traffic control
-- Edge firewall for perimeter security
-- Centralized server services (DNS, DHCP, HTTP, RADIUS)
-- Secure enterprise printing (dedicated VLAN)
-- Department-wise isolation and security zoning
-- Scalable enterprise network design
-
----
-
-## 🧱 Network Architecture
-
-### Topology Type
-**Collapsed Core Star Topology**
 
 ### Layers
 
