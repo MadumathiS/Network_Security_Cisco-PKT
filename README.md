@@ -10,6 +10,8 @@ All access-layer switches are connected in a star formation to a central Layer 3
 
 ![Network Topology](screenshots/topology-overview.png)
 
+---
+```
 ========================================================================================================
                                          [ 🌐 ISP ROUTER ]
                                                  │
@@ -33,6 +35,8 @@ All access-layer switches are connected in a star formation to a central Layer 3
  (PROD)      (SUPP-B)    (STUDY)     (SUPP-A)    (MGMT)       (IT)
  (VLAN 10)   (VLAN 20)   (VLAN 30)   (VLAN 40)   (VLAN 50)    (VLAN 60)
 ========================================================================================================
+
+```
 - Collapsed Core Star Topology design
 - VLAN-based segmentation and isolation
 - Inter-VLAN routing via Layer 3 core switch
