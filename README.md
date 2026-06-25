@@ -91,7 +91,6 @@ Network-Security/
 │ ├── core-switch-config.txt
 │ ├── firewall-config.txt
 │ ├── server-configs.txt
-│ │
 │ └── access-switch-configs/
 │ ├── support-a-switch.txt
 │ ├── support-b-switch.txt
