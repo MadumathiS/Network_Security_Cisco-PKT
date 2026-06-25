@@ -28,36 +28,6 @@ All access-layer switches are connected in a star formation to a central Layer 3
 ### Topology Type
 **Collapsed Core Star Topology**
 
-![Network Topology](screenshots/topology-overview.png)
-
----
-```
-========================================================================================================
-                                         [ 🌐 ISP ROUTER ]
-                                                 │
-                                                 ▼ (Outside Zone)
-                                      [ 🧱 ASA 5506-X FIREWALL ]
-                                          │              │
-                (Inside Zone) ────────────┘              └──────────── (Perimeter DMZ Zone)
-                       │                                                 │
-                       ▼                                                 ▼
-            [ 🧠 CORE-MLS MULTILAYER SWITCH ]                     [ 🔒 DMZ ACCESS SWITCH (2960) ]
-                       │                                                 │
-                       ├──► [ 💾 DNS Server (.10) ]                      ├──► [ 🌐 HTTP Web Server (.2) ]
-                       ├──► [ 💾 DHCP Server (.2) ]                      └──► [ 📂 FTP Storage Server (.3) ]
-                       ├──► [ 💾 AAA/RADIUS Node (.5) ]
-                       └──► [ 💾 iSCSI Storage Target (.6) ]
-                       │
-   ┌───────────┬───────┴───┬───────────┬───────────┬───────────┐  
-   │           │           │           │           │           │   (802.1Q Fiber Trunk Lines)
-   ▼           ▼           ▼           ▼           ▼           ▼
-[ Switch1 ] [ Switch2 ] [ Switch3 ] [ Switch4 ] [ Switch5 ] [ Switch6 ]
- (PROD)      (SUPP-B)    (STUDY)     (SUPP-A)    (MGMT)       (IT)
- (VLAN 10)   (VLAN 20)   (VLAN 30)   (VLAN 40)   (VLAN 50)    (VLAN 60)
-========================================================================================================
-
-```
-
 ### Layers
 
 - **Core Layer (Collapsed Core Switch - Layer 3)**
@@ -151,11 +121,40 @@ Network-Security/
 
 > Add Packet Tracer visuals here
 
-- Complete topology view
-- VLAN segmentation map
-- Firewall configuration
-- Server room setup
-- Connectivity test results (ping/traceroute)
+- ![Network Topology](screenshots/topology-overview.png)
+  
+- Vlan Structure
+```
+========================================================================================================
+                                         [ 🌐 ISP ROUTER ]
+                                                 │
+                                                 ▼ (Outside Zone)
+                                      [ 🧱 ASA 5506-X FIREWALL ]
+                                          │              │
+                (Inside Zone) ────────────┘              └──────────── (Perimeter DMZ Zone)
+                       │                                                 │
+                       ▼                                                 ▼
+            [ 🧠 CORE-MLS MULTILAYER SWITCH ]                     [ 🔒 DMZ ACCESS SWITCH (2960) ]
+                       │                                                 │
+                       ├──► [ 💾 DNS Server (.10) ]                      ├──► [ 🌐 HTTP Web Server (.2) ]
+                       ├──► [ 💾 DHCP Server (.2) ]                      └──► [ 📂 FTP Storage Server (.3) ]
+                       ├──► [ 💾 AAA/RADIUS Node (.5) ]
+                       └──► [ 💾 iSCSI Storage Target (.6) ]
+                       │
+   ┌───────────┬───────┴───┬───────────┬───────────┬───────────┐  
+   │           │           │           │           │           │   (802.1Q Fiber Trunk Lines)
+   ▼           ▼           ▼           ▼           ▼           ▼
+[ Switch1 ] [ Switch2 ] [ Switch3 ] [ Switch4 ] [ Switch5 ] [ Switch6 ]
+ (PROD)      (SUPP-B)    (STUDY)     (SUPP-A)    (MGMT)       (IT)
+ (VLAN 10)   (VLAN 20)   (VLAN 30)   (VLAN 40)   (VLAN 50)    (VLAN 60)
+========================================================================================================
+
+```
+- ![Firewall configuration](screenshots/firewall-setup.png)
+  
+- ![Server room setup](screenshots/server-room.png)
+  
+- ![Connectivity test results](screenshots/ping-tests.png)
 
 ---
 
