@@ -119,9 +119,9 @@ Network-Security/
 
 ## 🖼️ Screenshots
 
-> Add Packet Tracer visuals here
 
-- ![Network Topology](screenshots/topology-overview.png)
+- Network Topology
+  ![Network Topology](screenshots/topology-overview.png)
   
 - Vlan Structure
 ```
@@ -150,11 +150,14 @@ Network-Security/
 ========================================================================================================
 
 ```
-- ![Firewall configuration](screenshots/firewall-setup.png)
+- Firewall configuration
+   ![Firewall configuration](screenshots/firewall-setup.png)
   
-- ![Server room setup](screenshots/server-room.png)
+- Server room setup
+  ![Server room setup](screenshots/server-room.png)
   
-- ![Connectivity test results](screenshots/ping-tests.png)
+- Connectivity test results
+  ![Connectivity test results](screenshots/ping-tests.png)
 
 ---
 
@@ -162,9 +165,9 @@ Network-Security/
 
 1. Open Cisco Packet Tracer
 2. Load the file:
-```
-nvidia.pkt
-```
+
+[Complete Packet Tracer Project File](documentation/nvidia.pkt)
+
 3. Wait for devices to initialize
 4. Verify:
 - VLAN assignments
