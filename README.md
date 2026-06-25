@@ -118,12 +118,11 @@ Network-Security/
 ---
 
 ## 🖼️ Screenshots
-
-
-- Network Topology
+#### Network Topology
+  
   ![Network Topology](screenshots/topology-overview.png)
   
-- Vlan Structure
+#### Vlan Structure
 ```
 ========================================================================================================
                                          [ 🌐 ISP ROUTER ]
@@ -150,13 +149,13 @@ Network-Security/
 ========================================================================================================
 
 ```
-- Firewall configuration
+#### Firewall configuration
    ![Firewall configuration](screenshots/firewall-setup.png)
   
-- Server room setup
+#### Server room setup
   ![Server room setup](screenshots/server-room.png)
   
-- Connectivity test results
+#### Connectivity test results
   ![Connectivity test results](screenshots/ping-tests.png)
 
 ---
