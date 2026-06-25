@@ -1,5 +1,7 @@
 # Network-Security
 
+<img width="100" height="100" alt="image" src="https://github.com/user-attachments/assets/34cac26b-e79a-4eb9-92f8-fa8ea67d4865" />
+
 Network Security project designed and simulated using Cisco Packet Tracer, demonstrating a **collapsed core star topology enterprise network architecture**. The design focuses on secure segmentation, centralized routing, and controlled inter-department communication using VLANs, ACLs, and firewall enforcement.
 
 All access-layer switches are connected in a star formation to a central Layer 3 core switch, which handles inter-VLAN routing and network policy enforcement.
