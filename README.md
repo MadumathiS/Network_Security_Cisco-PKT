@@ -103,9 +103,9 @@ Network-Security/
 │ └── it-switch.txt
 │
 ├── documentation/
-| ├── nvidia.pkt
-│ ├── nvidia_stratum_master_report.pdf
-│ └── networking_analysis.pdf
+| ├── stratum.pkt
+│ ├── Final_report.md
+│ └── networking_analysis.md
 │
 └── screenshots/
 ├── topology-overview.png
