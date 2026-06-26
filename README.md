@@ -166,7 +166,7 @@ Production  Supp_B  Study   Supp_A  Mgmt    IT_Dept
 1. Open Cisco Packet Tracer
 2. Load the file:
 
-[Complete Packet Tracer Project File](documentation/nvidia.pkt)
+[Complete Packet Tracer Project File](documentation/stratum.pkt)
 
 3. Wait for devices to initialize
 4. Verify:
