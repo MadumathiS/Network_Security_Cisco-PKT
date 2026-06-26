@@ -125,27 +125,28 @@ Network-Security/
 #### Vlan Structure
 ```
 ========================================================================================================
-                                         [ 🌐 ISP ROUTER ]
-                                                 │
-                                                 ▼ (Outside Zone)
-                                      [ 🧱 ASA 5506-X FIREWALL ]
-                                          │              │
-                (Inside Zone) ────────────┘              └──────────── (Perimeter DMZ Zone)
-                       │                                                 │
-                       ▼                                                 ▼
-            [ 🧠 CORE-MLS MULTILAYER SWITCH ]                     [ 🔒 DMZ ACCESS SWITCH (2960) ]
-                       │                                                 │
-                       ├──► [ 💾 DNS Server (.10) ]                      ├──► [ 🌐 HTTP Web Server (.2) ]
-                       ├──► [ 💾 DHCP Server (.2) ]                      └──► [ 📂 FTP Storage Server (.3) ]
-                       ├──► [ 💾 AAA/RADIUS Node (.5) ]
-                       └──► [ 💾 iSCSI Storage Target (.6) ]
-                       │
-   ┌───────────┬───────┴───┬───────────┬───────────┬───────────┐  
-   │           │           │           │           │           │   (802.1Q Fiber Trunk Lines)
-   ▼           ▼           ▼           ▼           ▼           ▼
-[ Switch1 ] [ Switch2 ] [ Switch3 ] [ Switch4 ] [ Switch5 ] [ Switch6 ]
- (PROD)      (SUPP-B)    (STUDY)     (SUPP-A)    (MGMT)       (IT)
- (VLAN 10)   (VLAN 20)   (VLAN 30)   (VLAN 40)   (VLAN 50)    (VLAN 60)
+                                       
+                        [ 🌐 ISP ROUTER ]
+                               |
+                        ▼ (Outside Zone)
+                   [ 🔥 ASA 5506-X FIREWALL ]
+                   /                        \
+         (Inside Zone)                 (DMZ Zone)
+              |                              |
+    [ 🏢 MULTILAYER SWITCH ]        [ 🔒 DMZ ACCESS SWITCH ]
+      /   |   |   |   \                      |
+  [📁]   [📋] [🔌] [🛡️]  [🗄️]            [🌐 HTTP Web]
+  FTP    DNS  DHCP AAA  iSCSI           (192.168.90.2)
+ (.3)  (.10)  (.2) (.5)  (.6)
+    |
+    +---(802.1Q Trunk Access Lines to Room Switches)
+    |
++---+-------+-------+-------+-------+-------+
+|           |       |       |       |       |
+▼           ▼       ▼       ▼       ▼       ▼
+[💻]        [💻]    [💻]    [💻]    [💻]    [💻]
+Production  Supp_B  Study   Supp_A  Mgmt    IT_Dept
+(VLAN 10)  (VLAN 20)(VLAN 30)(VLAN 40)(VLAN 50)(VLAN 60)
 ========================================================================================================
 
 ```
