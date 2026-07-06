@@ -94,6 +94,7 @@ Network-Security/
 │ ├── core-switch-config.txt
 │ ├── firewall-config.txt
 │ ├── server-configs.txt
+│ ├── isp-router-config.txt
 │ └── access-switch-configs/
 │ ├── support-a-switch.txt
 │ ├── support-b-switch.txt
@@ -103,15 +104,22 @@ Network-Security/
 │ └── it-switch.txt
 │
 ├── documentation/
-| ├── stratum.pkt
-│ ├── Final_report.md
-│ └── networking_analysis.md
-│
+│   ├── stratum.pkt
+│   ├── Final_report.pdf
+│   ├── Networking_Analysis.pdf
+│   └── verification-steps/             
+│       ├── 01_perimeter_dmz.md
+│       ├── 02_application_matrix.md
+│       ├── 03_inter_vlan_isolation.md
+│       └── 04_iscsi_storage.md
 └── screenshots/
-├── topology-overview.png
+├── dmz_block.png
 ├── firewall-setup.png
-├── server-room.png
-└── ping-tests.png
+├── ftp_study_readonly.png
+├── ftp_support_denied.png
+├── full_ftp_access.png
+├── iscsi_validation.png
+└── topology-overview.png 
 
 ```
 
@@ -152,15 +160,37 @@ Production  Supp_B  Study   Supp_A  Mgmt    IT_Dept
 ```
 #### Firewall configuration
    ![Firewall configuration](screenshots/firewall-setup.png)
-  
-#### Server room setup
-  ![Server room setup](screenshots/server-room.png)
-  
-#### Connectivity test results
-  ![Connectivity test results](screenshots/ping-tests.png)
+
 
 ---
+### 🛡️ Security Matrix & Enforcement Evidence
+*These verification captures prove compliance with our explicit access matrices and network boundary rules.*
 
+#### Perimeter & DMZ Security Validation
+*Demonstrates that the DMZ is completely contained and unable to route laterally into backend resources.*
+![DMZ Security Boundaries](screenshots/dmz_block.png)
+
+#### FTP Access Matrix Controls
+*Left: Study Sector restricted to Read-Only directory browsing. Right: Support Clusters entirely dropped at line rate.*
+
+##### Full FTP Access
+![Full FTP Access](screenshots/full_ftp_access.png)
+
+##### Study FTP Read Only
+![Study FTP Read Only](screenshots/ftp_study_readonly.png)
+
+##### Support FTP Denied
+![Support FTP Denied](screenshots/ftp_support_denied.png)
+
+#### IT Department Lateral Traversal Overrides
+*Confirms that IT administrative segments can freely cross VLAN boundaries for diagnostic support.*
+![IT Administration Access Paths](screenshots/it_ping_success.png)
+
+#### iSCSI Storage Shield Validation
+*Split view proving Production segments are blocked from the storage array while IT retains native connectivity.*
+![iSCSI Storage Verification Matrix](screenshots/iscsi_validation.png)
+
+---
 ## ⚙️ How to Run the Project
 
 1. Open Cisco Packet Tracer

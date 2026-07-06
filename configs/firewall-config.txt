@@ -1,32 +1,102 @@
+ASA Version 9.6(1)
+!
+hostname ciscoasa
+names
 !
 interface GigabitEthernet1/1
  nameif outside
  security-level 0
- ip address dhcp
- no shutdown
+ ip address 203.0.113.2 255.255.255.252
 !
 interface GigabitEthernet1/2
  nameif inside
  security-level 100
  ip address 192.168.80.2 255.255.255.252
- no shutdown
 !
 interface GigabitEthernet1/3
  nameif dmz
- security-level 50
- ip address 192.168.90.1 255.255.255.240
- no shutdown
+ security-level 100
+ ip address 192.168.90.1 255.255.255.0
 !
-route inside 192.168.0.0 255.255.0.0 192.168.80.1 1
-route dmz 192.168.90.0 255.255.255.240 192.168.90.1 1
+interface GigabitEthernet1/4
+ no nameif
+ no security-level
+ no ip address
+ shutdown
 !
+interface GigabitEthernet1/5
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/6
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/7
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/8
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface Management1/1
+ management-only
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+object network DMZ_SERVER
+ host 192.168.90.2
+object network HTTP_SERVER_OBJ
+ host 192.168.90.2
 object network INTERNAL_NETS
  subnet 192.168.0.0 255.255.0.0
-nat (inside,outside) plain source dynamic INTERNAL_NETS interface
 !
+route inside 192.168.0.0 255.255.0.0 192.168.80.1 1
+route outside 0.0.0.0 0.0.0.0 203.0.113.1 1
+!
+access-list INSIDE_IN extended permit ip any any
+access-list INSIDE_IN extended permit icmp any any
+access-list OUTSIDE_TO_DMZ extended permit tcp any object HTTP_SERVER_OBJ eq 443
+access-list OUTSIDE_TO_DMZ extended permit icmp any object HTTP_SERVER_OBJ
+access-list INSIDE_TO_DMZ extended permit ip any any
+access-list INSIDE_TO_DMZ_ACL extended permit ip 192.168.0.0 255.255.0.0 192.168.90.0 255.255.255.0
+access-list INSIDE_TO_DMZ_ACL extended permit icmp any any
+access-list INSIDE_TO_DMZ_ACL extended permit tcp 192.168.0.0 255.255.0.0 host 192.168.90.2 eq www
+access-list INSIDE_TO_DMZ_ACL extended permit tcp 192.168.0.0 255.255.0.0 host 192.168.90.2 eq 443
+access-list DMZ_INBOUND extended deny ip 192.168.90.0 255.255.255.0 192.168.0.0 255.255.0.0
+access-list DMZ_INBOUND extended permit ip 192.168.90.0 255.255.255.0 any
+access-list DMZ_INBOUND extended permit icmp any any
+!
+access-group INSIDE_TO_DMZ_ACL in interface inside
+access-group OUTSIDE_TO_DMZ in interface outside
+!
+class-map inspection_default
+ match default-inspection-traffic
+!
+policy-map type inspect dns preset_dns_map
+ parameters
+  message-length maximum 512
 policy-map global_policy
  class inspection_default
-  inspect ftp
-  inspect icmp
+  inspect dns preset_dns_map
+  inspect ftp 
+  inspect icmp 
+  inspect tftp 
 !
-write memory
+service-policy global_policy global
+!
+telnet timeout 5
+ssh timeout 5
+!
+end

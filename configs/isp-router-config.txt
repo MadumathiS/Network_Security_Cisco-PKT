@@ -1,0 +1,26 @@
+!
+version 15.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname ISP-Router
+!
+ip cef
+no ipv6 cef
+!
+interface GigabitEthernet0/0/0
+ description Public Link Facing ASA 5506-X Outside
+ ip address 203.0.113.1 255.255.255.252
+ duplex auto
+ speed auto
+!
+ip classless
+ip route 192.168.0.0 255.255.0.0 203.0.113.2 
+!
+line con 0
+line aux 0
+line vty 0 4
+ login
+!
+end
